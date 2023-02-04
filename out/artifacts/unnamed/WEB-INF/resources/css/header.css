@@ -1,0 +1,45 @@
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+}
+.menubar{
+    background-color: aquamarine;
+    width: 100%;
+    display: inline-flex;
+}
+.menubar > div{
+    padding: 0;
+    padding-left: 20px;
+}
+.logo > img{
+    width: 50px;
+}
+.bell{
+    margin-right: 100px;
+}
+.bell-circle{
+    margin-top: -30px;
+    margin-left: 8px;
+}
+.menu-list{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+}
+.menu-list > div {
+    margin-top: 30px;
+    padding-left: 20px;
+    display: block;
+    padding-left: auto;
+}
+.login-button{
+    margin-left: auto;
+    padding: 0;
+}
+.login-button > button {
+    margin-bottom: auto
+}

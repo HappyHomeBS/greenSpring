@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Community">
+
+    <!-- 게시판 불러오기 -->
+    <select id="communityList"
+            parameterType="Integer"
+            resultType="com.green.vo.CommunityVo">
+        SELECT
+        c._id,
+        c.username,
+        u.usernickname,
+        c.tag,
+        c.title,
+        c.content,
+        c.time,
+        c.readcount,
+        (SELECT count(*) from comment_tb where content_id = c._id and menu_id = 1)commentcount
+        FROM community_tb c
+        JOIN user_tb as u
+        on c.username = u.username
+        <if test="tag != 0 and tag != ''">
+            WHERE
+            tag = #{tag}
+        </if>
+        Order BY _id DESC
+        LIMIT #{displaypost},#{postnum}
+    </select>
+    <!--페이징-->
+    <select id= "listCount" resultType="int">
+        SELECT COUNT(*) FROM community_tb
+    </select>
+    <!--쓰기-->
+    <insert id="communityWrite"
+            parameterType="com.green.vo.CommunityVo">
+        INSERT INTO community_tb( tag, title, username, content, readcount )
+        VALUES (#{tag}, #{title}, #{username}, #{content}, #{readcount})
+    </insert>
+    <!--수정-->
+    <update id="communityUpdate"
+            parameterType="com.green.vo.CommunityVo">
+        UPDATE community_tb
+        SET content = #{content},
+            title = #{title}
+        WHERE _id=#{_id}
+    </update>
+
+    <!--    삭제-->
+    <delete id="communityDelete">
+        DELETE FROM community_tb
+        WHERE _id=#{_id}
+    </delete>
+
+    <!--    읽기-->
+    <select id="communityRead"
+            parameterType="Integer"
+            resultType="com.green.vo.CommunityVo">
+        SELECT
+            c._id,
+            c.tag,
+            c.title,
+            c.username,
+            c.time,
+            c.readcount,
+            c.content,
+            u.usernickname
+        FROM community_tb AS c
+                 JOIN user_tb AS u
+                      ON c.username = u.username
+        WHERE c._id=#{_id}
+    </select>
+
+    <!--  조회수 -->
+
+    <update id="updateReadCount">
+        UPDATE community_tb
+        SET    readcount = readcount + 1
+        WHERE  _id  = #{_id}
+    </update>
+
+    <!-- 인기글 조회 -->
+    <select id="getTop10"
+            resultType="com.green.vo.CommunityVo">
+        select
+            c._id,
+            c.username,
+            u.usernickname,
+            c.tag,
+            c.title,
+            c.content,
+            c.time,
+            c.readcount,
+            (SELECT count(*) from comment_tb where content_id = c._id and menu_id = 1)commentcount
+        FROM community_tb as c
+                 JOIN user_tb as u
+                      ON c.username = u.username
+        WHERE time >= now()-86400
+        ORDER BY readcount DESC
+        LIMIT 10;
+    </select>
+
+
+
+
+</mapper>

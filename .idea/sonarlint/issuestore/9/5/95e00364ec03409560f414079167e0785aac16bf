@@ -1,0 +1,12 @@
+
+]
+java:S11921"GDefine a constant instead of duplicating this literal "writer" 3 times.(Ìøİ€
+\
+java:S11920"FDefine a constant instead of duplicating this literal "title" 4 times.(ï¨†
+c
+java:S1192N"HDefine a constant instead of duplicating this literal "content" 3 times.(”õÏíûÿÿÿÿ
+k	java:S117,"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¨•úÿÿÿÿ
+k	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±è–üÿÿÿÿ
+k	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¹ã­úÿÿÿÿ
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¨•úÿÿÿÿ
+e	java:S117i"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªÚ³
